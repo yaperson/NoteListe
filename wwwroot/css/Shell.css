@@ -1,0 +1,56 @@
+:host{
+    display: grid;
+}
+
+.Shell{
+    width: 100%;    
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.Shell__header{
+    display: grid;
+    background-color: var(--background-navigation-color);
+    border-bottom: solid 1px var(--separation-color); 
+    min-height: 3rem;
+    max-height: 3rem;
+    align-items: center;
+    justify-items: center;
+    text-transform: uppercase;
+    font-size:2em;
+}
+
+.Shell__content{
+    display: grid;
+    overflow-y: scroll;
+    align-items: stretch;
+    justify-items: stretch;
+}
+
+.Shell__footer{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+    background-color: var(--background-navigation-color);
+    border-top: solid 1px var(--separation-color); 
+    min-height: 3rem;
+    max-height: 3rem;
+    align-items: center;
+    justify-items: center;
+    text-transform: uppercase;
+}
+
+.Shell__footer::slotted(button){
+    border: solid 1px var(--separation-color);
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    background-color: white;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+

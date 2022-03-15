@@ -1,0 +1,70 @@
+:host{
+    display: grid;
+}
+
+.App{
+    max-width: 100%;
+    
+}
+
+.App__header{
+    display: grid;
+    top: 0;
+    height: 64px;
+    background: var(--bg-top-bottom);
+    box-shadow: 0 3px 6px 0 rgba(175, 175, 175, 0.719);
+}
+
+.App__banner{
+    display: grid; 
+  }
+
+.App__content{
+    display: grid;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.App__content_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+    margin-top: 1%;
+    max-width: 90%;
+    width: 100%;
+    height: 61px;
+    box-shadow: 0 2px 3px 0 #c9c9c9b7;
+    transition: 0.2s;
+}
+
+.App__content_card:hover{
+    box-shadow: 0 4px 6px 0 #aaaaaad5;
+    transition: 0.2s;
+}
+
+.card__title{
+    position: relative;
+    padding-left: var(--card-padding);
+    font-size: 1em;
+}
+
+.card__bar {
+    background-color: none;
+    width: 6px;
+    height: 49px;
+    border: none;
+    position: absolute;
+}
+
+.App__footer{
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    background: var(--bg-top-bottom); 
+    box-shadow: 3px 0 4px 2px rgba(175, 175, 175, 0.719);
+}
+

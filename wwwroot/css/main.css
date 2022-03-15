@@ -1,0 +1,89 @@
+:root{
+    --text-color: #2e2e2e;
+    --separation-color: #dddddd;
+    --background-navigation-color: #f8f8f8;
+
+    --report-new-color:var(--separation-color);
+    --report-active-color:#ded13b;
+    --report-closed-color:rgb(151, 204, 71);
+    --report-no-color:#de3b3b;
+    --report-status-width: 0.5em; 
+    --report-padding: 0.5em;    
+}
+  
+html, body, rp-shell {
+  position: fixed;
+  display: block;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-family: sans-serif;
+  color: var(--text-color);
+  overflow: hidden;
+  margin: 0;
+}
+
+h1{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.ReportList{
+  display: grid;
+  gap:1em;
+  padding: 1em;
+}
+
+.Report {
+    display: grid;
+    align-items: center;
+    padding: var(--report-padding);
+    border:solid 1px var(--separation-color);
+    cursor: pointer;
+}
+
+.Report__title{
+  font-size:2em;
+}
+
+.Report-state-new{
+    border-left:solid var(--report-status-width) rgb(138, 138, 138);  
+}
+
+.Report-state-active{
+  border-left:solid var(--report-status-width) var(--report-active-color);
+
+}
+
+.Report-state-closed{
+  border-left:solid var(--report-status-width) var(--report-closed-color);
+
+}
+
+.Report-state-no{
+  border-left:solid var(--report-status-width) var(--report-no-color);
+}
+
+
+/* .ReportUser{
+  display: flex;
+  justify-content: center;
+} */
+
+.User__form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  max-width: 80%;
+}
+
+.User__formContent{
+  margin-top: 20px;
+  width: 100%;
+  height: 30px;
+  max-height: 100%;
+}
