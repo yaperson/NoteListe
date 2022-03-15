@@ -41,10 +41,10 @@ app.post('/api/sendNote', function (req, res) {
   const mysql = require('mysql');
 
   const con = mysql.createConnection({
-      host: "mysql-yaperson.alwaysdata.net",
-      user: "yaperson",
-      password: "voltor123",
-      database : "yaperson_notelist"
+      host: "host",
+      user: "",
+      password: "",
+      database : ""
     });
 
   con.connect(function(err) {
