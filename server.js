@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require("body-parser");
 const path = require('path');
 const { title } = require('process');
+const { json } = require('express/lib/response');
 const host = 'localhost'
 const port = 5050
 
@@ -21,11 +22,11 @@ app.listen(port, host, () => {
     const mysql = require('mysql');
 
     const con = mysql.createConnection({
-        host: "host",
-        user: "user",
-        password: "mdp",
-        database : "your database"
-      });
+      host: "mysql-yaperson.alwaysdata.net",
+      user: "yaperson",
+      password: "voltor123",
+      database : "yaperson_notelist"
+    });
     
     con.connect(function(err) {
         if (err) throw err;
@@ -50,11 +51,11 @@ app.post('/api/sendNote', function (req, res) {
       if (err) throw err;
       console.log("DB MySQL connected !");
 
-      const data = JSON.parse(req.body);
+      const data = JSON.parse(Object.keys(req.body));
       //const data = req.body
 
       // let data = data
-      console.log(`${data}`)
+      console.log(data)
 
       con.query("INSERT INTO notes (noteTitle, noteContent) VALUE ('"+data.title+"', '"+data.content+"');", function (err, res) {
         if (err) throw err;
