@@ -21,10 +21,10 @@ app.listen(port, host, () => {
     const mysql = require('mysql');
 
     const con = mysql.createConnection({
-        host: "mysql-yaperson.alwaysdata.net",
-        user: "yaperson",
-        password: "voltor123",
-        database : "yaperson_notelist"
+        host: "host",
+        user: "user",
+        password: "mdp",
+        database : "your database"
       });
     
     con.connect(function(err) {
