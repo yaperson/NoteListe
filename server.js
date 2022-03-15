@@ -22,10 +22,10 @@ app.listen(port, host, () => {
     const mysql = require('mysql');
 
     const con = mysql.createConnection({
-      host: "",
-      user: "",
-      password: "",
-      database : ""
+      host: "mysql-yaperson.alwaysdata.net",
+      user: "yaperson",
+      password: "voltor123",
+      database : "yaperson_notelist"
     });
     
     con.connect(function(err) {
@@ -41,10 +41,10 @@ app.post('/api/sendNote', function (req, res) {
   const mysql = require('mysql');
 
   const con = mysql.createConnection({
-    host: "",
-    user: "",
-    password: "",
-    database : ""
+    host: "mysql-yaperson.alwaysdata.net",
+    user: "yaperson",
+    password: "voltor123",
+    database : "yaperson_notelist"
   });
 
   con.connect(function(err) {

@@ -82,7 +82,7 @@ export default class {
             .then(json => console.log(json))
             .catch(err => console.log(err))
             console.log(data)
-        //this.shell.gotoView('/views/report-list.js')
+        this.shell.gotoView('/views/notes-list.js')
     }
 
     #buttonCancel_click_handler(){

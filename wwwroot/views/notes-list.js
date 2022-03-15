@@ -1,4 +1,4 @@
-import ReportService from '/services/report.js'
+import ReportService from '/services/notes.js'
 
 export default class {
     async header() {
@@ -10,7 +10,7 @@ export default class {
     async content() {
         let itemsElement = document.createElement('div')
         itemsElement.classList.add('ReportList')
-        let data = await ReportService.getReports()
+        let data = await ReportService.getNotes()
         console.log(data)
         for (let item of data) {
             createReportItem.call(this, item)
@@ -23,7 +23,7 @@ export default class {
         function createReportItem(item) {
             let itemElement = document.createElement('div')
             itemElement.classList.add('Report')
-            itemElement.classList.add('Report-state-' + (item.WFS_Name || 'no'))
+            itemElement.classList.add('Report-state-')
             itemElement.addEventListener('click', () => this.#item_click_handler(item))
 
                 let itemTitleElement = document.createElement('div')
@@ -34,8 +34,8 @@ export default class {
                 itemElement.append(itemTitleElement)
                 itemElement.append(itemTitleDescription)
 
-                itemTitleElement.innerHTML = item.RPT_Title || '[NO TITLE]'
-                itemTitleDescription.innerHTML = item.RPT_Comment || ''
+                itemTitleElement.innerHTML = RowDataPacket.noteTitle || '[NO TITLE]'
+                itemTitleDescription.innerHTML = item.noteContent || ''
 
                 itemsElement.append(itemElement)
         }
