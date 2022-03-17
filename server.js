@@ -20,31 +20,35 @@ app.listen(port, host, () => {
  app.get('/api/getNote', function (req, res) {
 
     const mysql = require('mysql');
+    const dbConfig = require("../config/db.config.js");
 
     const con = mysql.createConnection({
-      host: "mysql-yaperson.alwaysdata.net",
-      user: "yaperson",
-      password: "voltor123",
-      database : "yaperson_notelist"
+      host: dbConfig.HOST,
+      user: dbConfig.USER,
+      password: dbConfig.PASSWORD,
+      database: dbConfig.DB
     });
     
     con.connect(function(err) {
         if (err) throw err;
         console.log("DB MySQL connected !");
-        con.query("SELECT noteTitle, noteContent FROM notes", function (err, res) {
+        con.query("SELECT noteTitle, noteContent FROM notes", function (err, resp) {
             if (err) throw err;
-            console.log(res);
+            console.log(resp);
           });
       });
-});
+      return res
+    });
 app.post('/api/sendNote', function (req, res) {
+
   const mysql = require('mysql');
+  const dbConfig = require("../config/db.config.js");
 
   const con = mysql.createConnection({
-    host: "mysql-yaperson.alwaysdata.net",
-    user: "yaperson",
-    password: "voltor123",
-    database : "yaperson_notelist"
+    host: dbConfig.HOST,
+    user: dbConfig.USER,
+    password: dbConfig.PASSWORD,
+    database: dbConfig.DB
   });
 
   con.connect(function(err) {
