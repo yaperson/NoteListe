@@ -1,4 +1,4 @@
-import ReportService from '/services/notes.js'
+import ReportService from '../services/notes.js'
 
 export default class {
     async header() {
@@ -34,7 +34,7 @@ export default class {
                 itemElement.append(itemTitleElement)
                 itemElement.append(itemTitleDescription)
 
-                itemTitleElement.innerHTML = RowDataPacket.noteTitle || '[NO TITLE]'
+                itemTitleElement.innerHTML = item.noteTitle || '[NO TITLE]'
                 itemTitleDescription.innerHTML = item.noteContent || ''
 
                 itemsElement.append(itemElement)
@@ -57,11 +57,11 @@ export default class {
     }
 
     #item_click_handler(item) {
-        alert(item.title)
+        this.shell.gotoView('/views/notes-update.js')
     }
 
     #buttonAdd_click_handler(){
-        this.shell.gotoView('/views/report-add.js')
+        this.shell.gotoView('/views/notes-add.js')
     }
 
     #buttonUser_click_handler(){

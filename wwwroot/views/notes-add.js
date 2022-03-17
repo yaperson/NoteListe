@@ -86,6 +86,6 @@ export default class {
     }
 
     #buttonCancel_click_handler(){
-        this.shell.gotoView('/views/report-list.js')
+        this.shell.gotoView('/views/notes-list.js')
     }
 }
