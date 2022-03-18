@@ -1,3 +1,5 @@
+import ReportService from '../services/notes.js'
+
 export default class {
     #itemSurnameElement
     #itemNameElement
@@ -11,21 +13,25 @@ export default class {
         let itemsElement = document.createElement('div')
         itemsElement.classList.add('ReportUser')
         createFormItem.call(this)
+        let data = await ReportService.getNotes()
+        console.log(data)
         return itemsElement
 
         //---
 
-        function createFormItem() {
+        function createFormItem(data) {
             let itemElement = document.createElement('form')
             itemElement.classList.add('User__form')
 
             this.#itemSurnameElement = document.createElement('input')
             this.#itemSurnameElement.setAttribute('placeholder', 'Nom')
+            this.#itemSurnameElement.setAttribute('value', data.noteTitle)
             this.#itemSurnameElement.classList.add('User__formContent')
 
             // let itemNameElement = document.createElement('input')
             this.#itemNameElement = document.createElement('input')
             this.#itemNameElement.setAttribute('placeholder', 'Prenom')
+            this.#itemNameElement.setAttribute('value', data.noteContent)
             this.#itemNameElement.classList.add('User__formContent')
 
             let itemTxtRadioElement = document.createElement('span')
@@ -80,7 +86,7 @@ export default class {
             .then(json => console.log(json))
             .catch(err => console.log(err))
             console.log(data)
-        this.shell.gotoView('/views/notes-list.js')
+        //this.shell.gotoView('/views/notes-list.js')
     }
 
     #buttonCancel_click_handler(){

@@ -1,8 +1,10 @@
-const express = require('express')
+const express    = require('express')
 const bodyParser = require("body-parser");
-const path = require('path');
-const { title } = require('process');
-const { json } = require('express/lib/response');
+const path       = require('path');
+const { title }  = require('process');
+const { json }   = require('express/lib/response');
+const fs         = require('fs');
+
 const host = 'localhost'
 const port = 5050
 
@@ -44,6 +46,10 @@ app.get('/api/getNote', function (req, res) {
 
 app.post('/api/sendNote', function (req, res) {
 
+
+  const data = JSON.parse(Object.keys(req.body));
+  console.log(data)
+
   const mysql = require('mysql');
   const dbConfig = require("./config/db.config");
 
@@ -58,16 +64,15 @@ app.post('/api/sendNote', function (req, res) {
     if (err) throw err;
     console.log("DB MySQL connected !");
 
-    const data = JSON.parse(Object.keys(req.body));
-    //const data = req.body
-
-    // let data = data
-    console.log(data)
-
     con.query("INSERT INTO notes (noteTitle, noteContent) VALUE ('" + data.title + "', '" + data.content + "');", function (err, res) {
       if (err) throw err;
       console.log(res);
     });
+  });
+
+  fs.appendFile( './notesFile/userName/' + data.title +'.txt', data.content, function (err) {
+    if (err) throw err;
+    console.log('Fichier créé !');
   });
 });
 
