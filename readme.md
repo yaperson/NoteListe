@@ -5,6 +5,8 @@ projet node.js de bloc notes.
 - npm install
 - npm require express
 - npm require body-parser
+- copier le 'config.sample.js' situé dans "/config/" et le renomé 'config.sample'
+- completer les champs vide par vos identifiant de BDD
 
 ### objectifs :
 - Completer le CRUD (Update et Delete)
