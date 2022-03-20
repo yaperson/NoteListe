@@ -10,6 +10,6 @@ projet node.js de bloc notes.
 
 ### objectifs :
 - Completer le CRUD (Update et Delete)
-- Ajouts des utilisateurs
-- Création d'un ID qui relie les fichiers TXT sur le serveur a la base de donnée
+- Ajouts des utilisateurs (chaque utilisateur son dossier)
+- Création d'un ID qui relie les fichiers TXT sur le serveur à la base de donnée (ID créer sur le serveur en mis dans le nom du fichier)
 - Création de compte
