@@ -76,7 +76,7 @@ app.post('/api/sendNote', function (req, res) {
   });
 });
 
-app.post('/api/updateNote', function (req, res) {
+app.put('/api/updateNote', function (req, res) {
 
   const mysql = require('mysql');
   const dbConfig = require("./config/db.config");
@@ -99,6 +99,67 @@ app.post('/api/updateNote', function (req, res) {
     console.log(data)
 
     con.query("UPDATE notes (noteTitle, noteContent) VALUE ('" + data.title + "', '" + data.content + "');", function (err, res) {
+      if (err) throw err;
+      console.log(res);
+    });
+  });
+});
+
+
+// -- Users part
+
+app.post('/api/newUser', function (req, res) {
+
+  const mysql = require('mysql');
+  const dbConfig = require("./config/db.config");
+
+  const con = mysql.createConnection({
+    host: dbConfig.HOST,
+    user: dbConfig.USER,
+    password: dbConfig.PASSWORD,
+    database: dbConfig.DB
+  });
+
+  con.connect(function (err) {
+    if (err) throw err;
+    console.log("DB MySQL connected !");
+
+    const data = JSON.parse(Object.keys(req.body));
+    //const data = req.body
+
+    // let data = data
+    console.log(data)
+
+    con.query("INSERT INTO notes (userName, userMail, userPassword) VALUE ('" + data.USR_Name + "', '" + data.USR_Mail + "', '" + data.USR_Pwd + "');", function (err, res) {
+      if (err) throw err;
+      console.log(res);
+    });
+  });
+});
+
+app.post('/api/connectUser', function (req, res) {
+
+  const mysql = require('mysql');
+  const dbConfig = require("./config/db.config");
+
+  const con = mysql.createConnection({
+    host: dbConfig.HOST,
+    user: dbConfig.USER,
+    password: dbConfig.PASSWORD,
+    database: dbConfig.DB
+  });
+
+  con.connect(function (err) {
+    if (err) throw err;
+    console.log("DB MySQL connected !");
+
+    const data = JSON.parse(Object.keys(req.body));
+    //const data = req.body
+
+    // let data = data
+    console.log(data)
+    
+    con.query("INSERT INTO notes (userName, userMail, userPassword) VALUE ('" + data.USR_Name + "', '" + data.USR_Mail + "', '" + data.USR_Pwd + "');", function (err, res) {
       if (err) throw err;
       console.log(res);
     });

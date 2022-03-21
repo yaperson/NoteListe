@@ -1,55 +1,82 @@
 
 export default class {
-    #itemSurnameElement
     #itemNameElement
-    #itemPhoneElement
+    #itemMailElement
+    #itemPasswordElement
+    #sendFormElement
     async header() {
         let titleElement = document.createElement('div')
-        titleElement.innerText = "Connecter en tant que ..."
+        titleElement.innerText = "note app"
         return titleElement;
     }
 
     async content() {
         let itemsElement = document.createElement('div')
         itemsElement.classList.add('ReportUser')
-        createFormItem.call(this)
+
+        createFormConnectUser.call(this)
+        createFormNewUser.call(this)
+        
         return itemsElement
 
         //---
-
-        function createFormItem() {
+        function createFormConnectUser() {
             let itemElement = document.createElement('form')
             itemElement.classList.add('User__form')
 
-            this.#itemSurnameElement = document.createElement('input')
-            this.#itemSurnameElement.setAttribute('placeholder', 'Nom')
-            this.#itemSurnameElement.classList.add('User__formContent')
-
             // let itemNameElement = document.createElement('input')
+            this.#itemMailElement = document.createElement('input')
+            this.#itemMailElement.setAttribute('placeholder', 'mail')
+            this.#itemMailElement.classList.add('User__formContent')
+
+            this.#itemPasswordElement = document.createElement('input')
+            this.#itemPasswordElement.setAttribute('placeholder', 'password')
+            this.#itemPasswordElement.classList.add('User__formContent')
+
+            this.#sendFormElement = document.createElement('button')
+            this.#sendFormElement.innerHTML='se connecter';
+            this.#sendFormElement.addEventListener('click', ()=>this.#connect_click_handler.call(this))
+
+            itemElement.append(this.#itemMailElement)
+            itemElement.append(this.#itemPasswordElement)
+            itemElement.append(this.#sendFormElement)
+
+            // itemElement.append(itemRadioElement)
+            // itemElement.append(itemRadioElement)
+
+
+            itemsElement.append(itemElement)
+        }
+
+        function createFormNewUser() {
+            let itemElement = document.createElement('form')
+            itemElement.classList.add('User__form')
+
             this.#itemNameElement = document.createElement('input')
-            this.#itemNameElement.setAttribute('placeholder', 'Prenom')
+            this.#itemNameElement.setAttribute('placeholder', 'Nom')
             this.#itemNameElement.classList.add('User__formContent')
 
-            this.#itemPhoneElement = document.createElement('input')
-            this.#itemPhoneElement.setAttribute('placeholder', 'Telephone')
-            this.#itemPhoneElement.classList.add('User__formContent')
+            // let itemNameElement = document.createElement('input')
+            this.#itemMailElement = document.createElement('input')
+            this.#itemMailElement.setAttribute('placeholder', 'mail')
+            this.#itemMailElement.classList.add('User__formContent')
 
+            this.#itemPasswordElement = document.createElement('input')
+            this.#itemPasswordElement.setAttribute('placeholder', 'password')
+            this.#itemPasswordElement.classList.add('User__formContent')
 
-            let itemTxtRadioElement = document.createElement('span')
-            itemTxtRadioElement.innerText = "Monsieur"
+            this.#sendFormElement = document.createElement('button')
+            this.#sendFormElement.innerHTML='Créer un compte';
+            this.#sendFormElement.addEventListener('click', ()=>this.#send_click_handler.call(this))
 
-            let itemRadioElement = document.createElement('input')
-            itemRadioElement.setAttribute('type', 'radio')
-            itemRadioElement.innerText= "Monsieur"
-            itemRadioElement.classList.add('User__formSelect')
-
-
-            itemElement.append(this.#itemSurnameElement)
             itemElement.append(this.#itemNameElement)
-            itemElement.append(this.#itemPhoneElement)
+            itemElement.append(this.#itemMailElement)
+            itemElement.append(this.#itemPasswordElement)
+            itemElement.append(this.#sendFormElement)
 
             // itemElement.append(itemRadioElement)
             // itemElement.append(itemRadioElement)
+
 
             itemsElement.append(itemElement)
         }
@@ -68,14 +95,14 @@ export default class {
         return [buttonOkElement, buttonCancelElement]
     }   
 
-    #buttonOk_click_handler(){
+    #send_click_handler(){
         // this.shell.gotoView('/views/report-list.js')
-        let value = this.#itemSurnameElement.value
-        let value2 = this.#itemNameElement.value
-        let value3 = this.#itemPhoneElement.value
+        let USR_Name = this.#itemNameElement.value
+        let USR_Mail = this.#itemMailElement.value
+        let USR_Pwd  = this.#itemPasswordElement.value
         //alert(value + ' ' + value2 + ' ' + value3)
 
-        const url = 'http://localhost:5050/api/report-user';
+        const url = 'http://localhost:5050/api/newUser';
         const headers = {
             "Content-type": "application/json; charset=UTF-8"
             //,"client_id": "1001125",
@@ -83,12 +110,68 @@ export default class {
         }
 
         const data = {
-            USR_FirstName: value,
-            USR_LastName: value2,
-            USR_Phone: value3
+            USR_Name: USR_Name,
+            USR_Mail: USR_Mail,
+            USR_Pwd:  USR_Pwd
         }
 
-        
+        fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
+            .then(response => response.json())  
+            .then(json => console.log(json))
+            .catch(err => console.log(err))
+            console.log(data)
+        //this.shell.gotoView('/views/report-list.js')
+
+    }
+
+    #connect_click_handler(){
+        // this.shell.gotoView('/views/report-list.js')
+        let USR_Name = this.#itemNameElement.value
+        let USR_Mail = this.#itemMailElement.value
+        let USR_Pwd  = this.#itemPasswordElement.value
+        //alert(value + ' ' + value2 + ' ' + value3)
+
+        const url = 'http://localhost:5050/api/connectUser';
+        const headers = {
+            "Content-type": "application/json; charset=UTF-8"
+            //,"client_id": "1001125",
+            //"client_secret": "876JHG76UKFJYGVHf867rFUTFGHCJ8JHV"
+        }
+
+        const data = {
+            USR_Name: USR_Name,
+            USR_Mail: USR_Mail,
+            USR_Pwd:  USR_Pwd
+        }
+
+        fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
+            .then(response => response.json())  
+            .then(json => console.log(json))
+            .catch(err => console.log(err))
+            console.log(data)
+        //this.shell.gotoView('/views/report-list.js')
+
+    }
+
+    #buttonOk_click_handler(){
+        // this.shell.gotoView('/views/report-list.js')
+        let USR_Name = this.#itemNameElement.value
+        let USR_Mail = this.#itemMailElement.value
+        let USR_Pwd  = this.#itemPasswordElement.value
+        //alert(value + ' ' + value2 + ' ' + value3)
+
+        const url = 'http://localhost:5050/api/new-user';
+        const headers = {
+            "Content-type": "application/json; charset=UTF-8"
+            //,"client_id": "1001125",
+            //"client_secret": "876JHG76UKFJYGVHf867rFUTFGHCJ8JHV"
+        }
+
+        const data = {
+            USR_Name: USR_Name,
+            USR_Mail: USR_Mail,
+            USR_Pwd:  USR_Pwd
+        }
 
         fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
             .then(response => response.json())  
@@ -100,6 +183,6 @@ export default class {
     }
 
     #buttonCancel_click_handler(){
-        this.shell.gotoView('/views/report-list.js')
+        this.shell.gotoView('/views/index.js')
     }
 }

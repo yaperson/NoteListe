@@ -65,6 +65,6 @@ export default class {
     }
 
     #buttonUser_click_handler(){
-        this.shell.gotoView('/views/report-user.js')
+        this.shell.gotoView('/views/notes-user.js')
     }
 }
