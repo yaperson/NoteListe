@@ -64,21 +64,23 @@ export default class {
         // this.shell.gotoView('/views/report-list.js')
         let title = this.#itemSurnameElement.value  || "NO TITLE"
         let content = this.#itemNameElement.value   || "THERE IS NOTHING..."
+        let noteUID = Math.random(6)
 
-        const url = '/api/sendNote';
+        const url = '/api/sendNote'
         const headers = ({
             'Accept': 'application/json',
             'Content-Type':'application/x-www-form-urlencoded'
         })
         const data = {
             title: title, 
-            content: content
+            content: content,
+            noteUID: noteUID
         }
         // '"title"'+':'+ data.title +','+ '"content"'+':' + data.content
         // title: title, content: content
         
         fetch(url, { method: 'POST', headers: headers, body: JSON.stringify(data) })
-            .then(response => response.json())  
+            .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err))
             console.log(data)

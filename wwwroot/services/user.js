@@ -1,6 +1,6 @@
 export default class {
     static async getUsers() {
-        let response = await fetch('http://localhost:5050/api/report-user').then(function (response) {
+        let response = await fetch('http://localhost:5050/api/connectUser').then(function (response) {
             return response.json;
         })
         .catch(function (error) {
