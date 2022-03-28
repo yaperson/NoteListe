@@ -1,5 +1,5 @@
 const express    = require('express');
-const session = require('express-session');
+const session    = require('express-session');
 const bodyParser = require("body-parser");
 const path       = require('path');
 const { title }  = require('process');
@@ -71,7 +71,7 @@ app.post('/api/sendNote', function (req, res) {
     if (err) throw err;
     console.log("DB MySQL connected !");
 
-    con.query("INSERT INTO notes (`noteTitle`, `noteContent`, `noteUID`, `userId`) VALUES ('" + data.title + "', '" + data.content + "', '" + data.noteUID + "', '" + 1 + "');", function (err, res) {
+    con.query("INSERT INTO notes (`noteTitle`, `noteContent`, `noteUID`, `userId`) VALUES ('" + data.title + "', '" + data.content + "', '" + data.noteUID + "', '" + data.userId + "');", function (err, res) {
       if (err) throw err;
       console.log(res);
     });
@@ -135,6 +135,11 @@ app.post('/api/newUser', function (req, res) {
       if (err) throw err;
       console.log(res);
     });
+
+    fs.appendFile( './notesFile/'+data.usrName+'/' + 'welcome.txt', 'welcome'+data.usrName, function (err) {
+      if (err) throw err;
+      console.log('Fichier créé !');
+    });
   });
 });
 
@@ -156,17 +161,18 @@ app.post('/api/connectUser', function (req, res) {
 
     const data = req.body;
     console.log(data)
-    
+
     if (data.usrMail && data.usrPwd) {
       con.query('SELECT * FROM users WHERE userMail = ? AND userPassword = ?', [data.usrMail, data.usrPwd], function(error, results, fields) {
         if (error) throw error;
         if (results.length > 0) {
           req.session.loggedin = true;
           req.session.username = data.usrMail;
-          res.redirect(this.shell.gotoView('/views/notes-list.js'));
+          req.session.userId = data.userId;
+          res.send({route:'/views/notes-list.js'});
         } else {
           res.send('Incorrect Username and/or Password!');
-        }			
+        }
         res.end();
       });
     }

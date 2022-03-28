@@ -38,12 +38,18 @@ export default class {
                 itemElement.append(this.#itemTitleDescription)
                 this.#itemTitleElement.innerText = 'Note app'
                 this.#itemTitleDescription.innerText = 'Organize your notes and access it on all device !'
+
                 itemsElement.append(itemElement)
         }
     }
 
     async footer() {
+        let buttonCancelElement = document.createElement('button')
+        buttonCancelElement.innerHTML='<img src="/images/cancel.svg"/>';
+        
+        buttonCancelElement.addEventListener('click', ()=>this.#buttonAdd_click_handler.call(this))
 
+        return buttonCancelElement
     }
 
     #item_click_handler(item) {

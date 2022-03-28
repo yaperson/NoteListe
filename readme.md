@@ -4,6 +4,7 @@ projet node.js de bloc notes.
 ## Installation :
 - npm install
 - npm require express
+- npm require express-session
 - npm require body-parser
 - copier le 'config.sample.js' situé dans "/config/" et le renomé 'config.sample'
 - completer les champs vide par vos identifiant de BDD

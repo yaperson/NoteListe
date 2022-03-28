@@ -1,3 +1,4 @@
+import session from "express-session"
 export default class {
     #itemSurnameElement
     #itemNameElement
@@ -64,7 +65,8 @@ export default class {
         // this.shell.gotoView('/views/report-list.js')
         let title = this.#itemSurnameElement.value  || "NO TITLE"
         let content = this.#itemNameElement.value   || "THERE IS NOTHING..."
-        let noteUID = Math.random(6)
+        let noteUID = Math.floor(Math.random() * 1000000)
+        let userId = session.userId;
 
         const url = '/api/sendNote'
         const headers = ({
@@ -72,6 +74,7 @@ export default class {
             'Content-Type':'application/x-www-form-urlencoded'
         })
         const data = {
+            userId: userId,
             title: title, 
             content: content,
             noteUID: noteUID

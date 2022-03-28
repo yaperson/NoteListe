@@ -1,3 +1,5 @@
+import user from '../services/user.js'
+import connectService from '../services/user.js'
 
 export default class {
     #itemNameElement
@@ -94,7 +96,7 @@ export default class {
         buttonCancelElement.innerHTML='<img src="/images/cancel.svg"/>';
         
         buttonOkElement.addEventListener('click', ()=>this.#buttonOk_click_handler.call(this))
-        buttonCancelElement.addEventListener('click', ()=>this.#buttonCancel_click_handler.call(this))
+        buttonCancelElement.addEventListener('click', ()=>this.#connect_click_handler.call(this))
 
         return [buttonOkElement, buttonCancelElement]
     }   
@@ -125,8 +127,9 @@ export default class {
             .catch(err => console.log(err))
             console.log(data)
         //this.shell.gotoView('/views/report-list.js')
-
     }
+
+    // TODO
 
     #connect_click_handler(){
         // this.shell.gotoView('/views/report-list.js')
@@ -153,7 +156,12 @@ export default class {
             .then(json => console.log(json))
             .catch(err => console.log(err))
             console.log(data)
-
+            
+        let userVerif =  connectService.getUsersConnection()
+        for (let item of userVerif) {
+            console.log(item.route)
+            this.shell.gotoView(item.route)
+        }
     }
 
     #buttonOk_click_handler(){

@@ -1,6 +1,6 @@
 export default class {
-    static async getUsers() {
-        let response = await fetch('http://localhost:5050/api/connectUser').then(function (response) {
+    static async getUsersConnection() {
+        let response = await fetch('POST', '/api/connectUser').then(function (response) {
             return response.json;
         })
         .catch(function (error) {
@@ -10,8 +10,8 @@ export default class {
             return result.recordset
         });
 
-
-        let data = await response
-        return data
+        let userVerif = await response
+        console.error(userVerif)
+        return userVerif
     }
 }
