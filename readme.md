@@ -1,6 +1,10 @@
 # Note List
 projet node.js de bloc notes.
 
+
+![image info](./project_resources/screen.JPG)
+
+
 ## Installation :
 - npm install
 - npm require express

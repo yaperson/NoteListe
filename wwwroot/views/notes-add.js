@@ -59,7 +59,7 @@ export default class {
         buttonCancelElement.addEventListener('click', ()=>this.#buttonCancel_click_handler.call(this))
 
         return [buttonOkElement, buttonCancelElement]
-    }   
+    }
 
     #buttonOk_click_handler(){
         // this.shell.gotoView('/views/report-list.js')

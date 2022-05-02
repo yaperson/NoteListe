@@ -158,6 +158,7 @@ export default class {
             console.log(data)
             
         let userVerif =  connectService.getUsersConnection()
+        console.log(userVerif)
         for (let item of userVerif) {
             console.log(item.route)
             this.shell.gotoView(item.route)
