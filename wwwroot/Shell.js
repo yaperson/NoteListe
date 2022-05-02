@@ -15,7 +15,7 @@ let Shell = class extends HTMLElement {
         createHeader.call(this)
         createContent.call(this)
         createFooter.call(this)
-        this.gotoView('/views/notes-list.js')
+        this.gotoView('/views/index.js')
 
         //---
 

@@ -169,7 +169,7 @@ app.post('/api/connectUser', function (req, res) {
           req.session.loggedin = true;
           req.session.username = data.usrMail;
           req.session.userId = data.userId;
-          res.send({route:'/views/notes-list.js'});
+          res.json({route:'/views/notes-list.js'});
         } else {
           res.send('Incorrect Username and/or Password!');
         }
